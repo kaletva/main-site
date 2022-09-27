@@ -1,0 +1,61 @@
+$primary-color: rgb(84, 84, 84);
+
+
+.languages {
+    height: calc(100vh - 70px);
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    padding: 0px 15px;
+    border-bottom: 0.5px solid $primary-color;
+
+    align-items: center;
+
+    &__col {
+        width: 50%;
+    }
+
+    &__iconsCol {
+        position: absolute;
+        right: -250px;
+        height: 100%;
+
+        img {
+            height: 100%;
+        }
+    }
+
+    // img{
+    //     width: 50px;
+    // }
+}
+
+@media screen and (max-width: 850px) {
+
+    .languages {
+        flex-direction: column;
+        padding:15px;
+        height: calc(50vh);
+
+        &__col {
+            width: 70%;
+            height: 50%;
+        }
+
+        &__iconsCol {
+            position: relative;
+            right: auto;
+            height: 100%;
+            width: 100%;
+
+            img {
+                position: absolute;
+                bottom: -180px;
+                height: 150%;
+                width: 100%;
+                left: auto;
+                right: auto;
+            }
+        }
+    }
+}
