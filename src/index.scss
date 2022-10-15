@@ -15,6 +15,7 @@ body {
 
 
 *{
+  cursor: none !important;
   margin: 0;
   box-sizing: border-box;
   color: $primary-color;
@@ -26,6 +27,7 @@ body {
 }
 h1, h2, h3, h4, h5, h6, p{
   cursor: default;
+  color: rgb(84, 84, 84);
 }
 h1{
   text-transform: uppercase;
@@ -52,7 +54,7 @@ a{
   h1{
     text-transform: uppercase;
     font-weight: 600;
-    font-size: 45px;
+    font-size: 40px;
   }
   h2{
     text-transform: uppercase;
