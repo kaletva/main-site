@@ -1,4 +1,4 @@
-
+import React from 'react';
 import './App.scss';
 import Header from './components/Header/Header';
 import WhoIAm from './components/WhoIAm/WhoIAm';
@@ -8,18 +8,30 @@ import ContactMe from './components/ContactMe/ContactMe';
 import Footer from './components/Footer/Footer'
 import { useRef } from 'react';
 import { useState, useEffect } from 'react';
+import Location from './components/Location';
 
 
-function App() {
+
+const App: React.FC = () => {
   const { scrollYProgress } = useScroll();
 
-  const contactsRef = useRef(null)
-  const skillsRef = useRef(null)
+  const contactsRef = useRef<HTMLDivElement>(null)
+  const skillsRef = useRef<HTMLDivElement>(null)
 
-  const toContactsScroll = () => contactsRef.current.scrollIntoView({ behavior: "smooth" })
-  const toSkillsScroll = () => skillsRef.current.scrollIntoView({ behavior: "smooth", block: 'center' })
 
-  //курсор
+  const toContactsScroll = () => {
+    if (contactsRef.current) {
+      contactsRef.current.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
+  const toSkillsScroll = () => {
+    if (skillsRef.current) {
+      skillsRef.current.scrollIntoView({ behavior: "smooth", block: 'center' })
+    }
+  }
+
+  //cursor
   const [cursorPos, setMousePosition] = useState({
     x: 0,
     y: 0
@@ -39,7 +51,7 @@ function App() {
       window.removeEventListener("mousemove", mouseMove);
     }
   }, []);
-  const cursor = {
+  const cursor: any = {
     default: {
       height: 10,
       width: 10,
@@ -95,7 +107,7 @@ function App() {
       <motion.div className='scroll-progress' style={{ scaleX: scrollYProgress }} />
       <WhoIAm />
       <Stack skillsRef={skillsRef} />
-      {/* <Projects/> */}
+      <Location/>
       <ContactMe contactsRef={contactsRef} mouseEnter={mouseEnterСircle} mouseLeave={mouseLeave}/>
       <Footer mouseEnter={mouseEnterСircle} mouseLeave={mouseLeave}/>
     </div>

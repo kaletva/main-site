@@ -1,4 +1,5 @@
-import styles from '../ContactMe/ContactMe.module.scss'
+import React from 'react'
+import styles from './ContactMe.module.scss'
 import { motion } from 'framer-motion';
 
 function ContactMe({contactsRef, mouseEnter, mouseLeave}) {

@@ -1,4 +1,6 @@
-import styles from '../WhoIAm/WhoIAm.module.scss'
+import React from 'react'
+
+import styles from './WhoIAm.module.scss'
 import { motion } from 'framer-motion';
 
 function WhoIAm() {

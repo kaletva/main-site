@@ -1,9 +1,9 @@
 
 import styles from '../Stack/Stack.module.scss'
 import { useEffect, useState } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion'
+import { motion, useScroll} from 'framer-motion'
 import StackImg from '../Stack/img/Stack.svg'
-import { useRef } from 'react';
+
 
 function Stack({skillsRef}) {
     let { scrollY } = useScroll()
