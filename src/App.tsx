@@ -1,16 +1,13 @@
-import React from 'react';
-import './App.scss';
+import React, { useState, useEffect, useRef } from 'react';
+import { useScroll } from 'framer-motion';
 import Header from './components/Header/Header';
 import WhoIAm from './components/WhoIAm/WhoIAm';
-import { motion, useScroll } from 'framer-motion';
 import Stack from './components/Stack/Stack';
 import ContactMe from './components/ContactMe/ContactMe';
 import Footer from './components/Footer/Footer'
-import { useRef } from 'react';
-import { useState, useEffect } from 'react';
-import Location from './components/Location';
-
-
+import Global from './styles/global';
+import Cursor from './components/Cursor';
+import ScrollProgress from './components/ScrollProgress';
 
 const App: React.FC = () => {
   const { scrollYProgress } = useScroll();
@@ -38,7 +35,7 @@ const App: React.FC = () => {
   })
   const [enterCursorData, setEnterCursorData] = useState("default")
   useEffect(() => {
-    const mouseMove = e => {
+    const mouseMove = (e: {clientX: number, clientY: number}) => {
       setMousePosition({
         x: e.clientX,
         y: e.clientY
@@ -51,43 +48,6 @@ const App: React.FC = () => {
       window.removeEventListener("mousemove", mouseMove);
     }
   }, []);
-  const cursor: any = {
-    default: {
-      height: 10,
-      width: 10,
-      x: cursorPos.x - 5,
-      y: cursorPos.y - 5 
-    },
-    focus: {
-      height: 70,
-      width: 70,
-      borderRadius: 10,
-      
-      x: cursorPos.x - 35,
-      y: cursorPos.y - 35,
-      backgroundColor: "white",
-      mixBlendMode: "difference"
-    },
-    rotate: {
-      x: cursorPos.x - 22.5,
-      y: cursorPos.y - 22.5,
-      borderRadius: 5,
-      rotate: 135,
-      height: 45,
-      width: 45
-    },
-    circle: {
-      x: cursorPos.x - 25,
-      y: cursorPos.y - 25,
-      rotate: 135,
-      height: 45,
-      width: 45
-    },
-    click: {
-      x: cursorPos.x - 10,
-      y: cursorPos.y - 10 
-    }
-  }
 
   const mouseEnterFocus = () => setEnterCursorData("focus")
 
@@ -102,12 +62,12 @@ const App: React.FC = () => {
 
   return (
     <div onClick={() => clickF()}>
-      <motion.div animate={enterCursorData} variants={cursor}  className='cursor'></motion.div>
+      <Global/>
+      <Cursor cursorPos={cursorPos} enterCursorData={enterCursorData}/>
       <Header mouseEnter={mouseEnterСircle} mouseLeave={mouseLeave} mouseEnterFocus={mouseEnterFocus}  toContactsScroll={toContactsScroll} toSkillsScroll={toSkillsScroll} />
-      <motion.div className='scroll-progress' style={{ scaleX: scrollYProgress }} />
+      <ScrollProgress scrollYProgress={scrollYProgress}/>
       <WhoIAm />
       <Stack skillsRef={skillsRef} />
-      <Location/>
       <ContactMe contactsRef={contactsRef} mouseEnter={mouseEnterСircle} mouseLeave={mouseLeave}/>
       <Footer mouseEnter={mouseEnterСircle} mouseLeave={mouseLeave}/>
     </div>
